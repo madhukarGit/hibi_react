@@ -1,0 +1,29 @@
+.footer-bottom {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #70707024;
+}
+
+.footer-bottom > * {
+  padding: 0 1.6rem;
+}
+.footer-copyright {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.footer__copyright__reserved__1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.footer__copyright__reserved__2 {
+  border-right: 2px solid grey;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.footer__copyright__reserved__3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}

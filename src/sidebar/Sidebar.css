@@ -1,0 +1,19 @@
+.nav__side-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav__side-nav-link {
+  padding: 2rem;
+  width: 100%;
+  border-bottom: 1px solid #efefef;
+}
+.nav__side-nav-link--active {
+  background-color: #507497;
+  fill: #fff;
+  padding: 2rem;
+  width: 100%;
+  border-bottom: 1px solid #efefef;
+}
