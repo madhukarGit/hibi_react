@@ -9,6 +9,7 @@ const Main = ({ assetId }) => {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [assetIdHibi, setAssetIdHibi] = useState("");
+  const [error, setError] = useState("");
 
   // useEffect(() => {
   //   axios.get("http://localhost:8080/hibi").then((res) => {
@@ -33,13 +34,17 @@ const Main = ({ assetId }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:8080/asset", {
+      .post("http://localhost:9095/asset", {
         assetId: assetId,
       })
       .then((res) => {
         console.log(res.data);
         let data = res.data;
         setHibiData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(err.message);
       });
   }, []);
 
@@ -120,7 +125,7 @@ const Main = ({ assetId }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8080/asset", {
+      .post("http://localhost:9095/asset", {
         assetId: assetIdHibi,
       })
       .then((res) => {
@@ -129,6 +134,9 @@ const Main = ({ assetId }) => {
           return new Date(x.datetime) < new Date(y.datetime) ? 1 : -1;
         });
         setHibiData(data);
+      })
+      .catch((err) => {
+        setError(err.message);
       });
   };
   return (
@@ -174,6 +182,17 @@ const Main = ({ assetId }) => {
       </div>
       <div className="main__container">
         <section className="testimonals">{card_hibi_data}</section>
+        {hibiData.length === 0 && (
+          <div className="testimonals__card__center__align">
+            <div className="testimonals__card__error">
+              <span className="error__text__data">
+                Asset ID <p className="asset__zero_length__data">{assetId}</p>{" "}
+                has no data
+              </span>
+              <span className="error__api_network">{error}</span>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

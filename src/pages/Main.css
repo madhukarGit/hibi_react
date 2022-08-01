@@ -164,3 +164,39 @@
   font-size: 1rem;
   font-weight: 700;
 }
+.asset__zero_length__data {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.testimonals__card__center__align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.testimonals__card__error {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35rem;
+  height: 25rem;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgb(17 17 17 / 50%);
+  flex-direction: column;
+}
+
+.error__text__data {
+  display: flex;
+  font-size: 1.4rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-weight: 500;
+}
+.error__api_network {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
