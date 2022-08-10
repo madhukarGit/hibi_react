@@ -39,7 +39,7 @@ const ApmPost = (props) => {
           start processing the images in Hibi
         </span>
         <button className="apm__post__button" onClick={postApmHandler}>
-          Start Hibi watcher process
+          Start HIBI watcher process
         </button>
         <span className="succesful_validation__apm">{postToApm}</span>
       </section>
