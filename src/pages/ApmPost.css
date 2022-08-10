@@ -1,0 +1,57 @@
+.apm_post__data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.apm_post__data > :nth-child(even) {
+  margin-top: 2rem;
+}
+.text__header_h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.apm__post__button {
+  height: 8rem;
+  width: 40rem;
+  background-color: #41b3a3;
+  border: none;
+  color: #501b1d;
+  font-size: 1.8rem;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+.apm__post__button:active,
+.apm__post__button:focus {
+  border: none;
+}
+
+.apm__post__button:hover {
+  cursor: pointer;
+  width: 40rem;
+  letter-spacing: 1px;
+}
+.post__apm__data_hibi {
+  margin-top: 5rem;
+}
+
+.apm_post__data__assets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+}
+.succesful_validation__apm {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+.apm_post__data__data {
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

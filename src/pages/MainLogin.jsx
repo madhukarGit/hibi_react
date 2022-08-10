@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
-import "./Main.css";
+import "./MainLogin.css";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -38,8 +38,8 @@ const Main = ({ assetId }) => {
         assetId: assetId,
       })
       .then((res) => {
-        console.log(res.data);
         let data = res.data;
+        console.log(data);
         setHibiData(data);
       })
       .catch((err) => {
@@ -59,23 +59,19 @@ const Main = ({ assetId }) => {
   };
 
   const dateToIsoTransform = (date) => {
-    const dateOptions = {
-      timeZone: "UTC",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    };
-
-    return new Date(date).toLocaleDateString("en-US", dateOptions);
+    let str = date.split("T");
+    let vals = str[1].split(".");
+    let modifiedDate = str[0] + " " + vals[0];
+    return modifiedDate;
   };
 
   console.log("assetIdHibi ", assetIdHibi);
-
   let card_hibi_data =
     hibiData.length > 0 &&
     hibiData.map((hib) => {
       let transformedData = dateToDaysAgo(hib.datetime);
       let dateToIso = dateToIsoTransform(hib.datetime);
+
       return (
         <div key={hib.hibiId}>
           <div className="testimonals__card">
@@ -87,7 +83,7 @@ const Main = ({ assetId }) => {
             </div>
             <div className="card__title">
               <span className="card__title__lg">
-                <span className="card__defect__title">Defect Code: </span>
+                <span className="card__defect__title">Defect Name: </span>
                 <span className="card__defect__title__value">
                   {hib.defectName}
                 </span>
