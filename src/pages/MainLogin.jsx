@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import axios from "axios";
 import "./MainLogin.css";
 import { useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
 
 const Main = ({ assetId }) => {
   const [hibiData, setHibiData] = useState([]);
@@ -39,14 +38,93 @@ const Main = ({ assetId }) => {
       })
       .then((res) => {
         let data = res.data;
-        console.log(data);
-        setHibiData(data);
+        let groupedData = groupBy(data, "frameId");
+        let ans = groupByDefectNames(groupedData);
+        setHibiData(ans);
       })
       .catch((err) => {
         console.log(err);
         setError(err.message);
       });
   }, []);
+
+  const groupBy = (input, key) => {
+    return input.reduce((acc, currentValue) => {
+      let groupKey = currentValue[key];
+      if (!acc[groupKey]) {
+        acc[groupKey] = [];
+      }
+      acc[groupKey].push(currentValue);
+      return acc;
+    }, {});
+  };
+
+  const groupByDefectNames = (data) => {
+    let ans = [];
+    let transformedHibiObj = {
+      assetId: "",
+      assetLatitude: "",
+      assetLongitude: "",
+      datetime: "",
+      defectName: "",
+      frameId: "",
+      frameLatitude: "",
+      frameLongitude: "",
+      hibiId: "",
+      imgPath: "",
+      make: "",
+      model: "",
+      prediction: "",
+      severity: "",
+    };
+    for (let i = 0; i < Object.keys(data).length; i++) {
+      for (let j = 0; j < data[Object.keys(data)[i]].length; j++) {
+        transformedHibiObj.assetId = data[Object.keys(data)[i]][j].assetId;
+        transformedHibiObj.assetLatitude =
+          data[Object.keys(data)[i]][j].assetLatitude;
+        transformedHibiObj.assetLongitude =
+          data[Object.keys(data)[i]][j].assetLongitude;
+        transformedHibiObj.datetime = data[Object.keys(data)[i]][j].datetime;
+        transformedHibiObj.defectName +=
+          data[Object.keys(data)[i]][j].defectName + ",";
+        transformedHibiObj.frameId = data[Object.keys(data)[i]][j].frameId;
+        transformedHibiObj.frameLatitude =
+          data[Object.keys(data)[i]][j].frameLatitude;
+        transformedHibiObj.frameLongitude =
+          data[Object.keys(data)[i]][j].frameLongitude;
+        transformedHibiObj.hibiId = data[Object.keys(data)[i]][j].hibiId;
+        transformedHibiObj.imgPath = data[Object.keys(data)[i]][j].imgPath;
+        transformedHibiObj.make = data[Object.keys(data)[i]][j].make;
+        transformedHibiObj.model = data[Object.keys(data)[i]][j].model;
+        transformedHibiObj.prediction =
+          data[Object.keys(data)[i]][j].prediction;
+        transformedHibiObj.severity = data[Object.keys(data)[i]][j].severity;
+      }
+
+      // setHibiData((prev) => {
+      //   return [...prev, transformedHibiObj];
+      // });
+      ans.push(transformedHibiObj);
+      transformedHibiObj = {
+        assetId: "",
+        assetLatitude: "",
+        assetLongitude: "",
+        datetime: "",
+        defectName: "",
+        frameId: "",
+        frameLatitude: "",
+        frameLongitude: "",
+        hibiId: "",
+        imgPath: "",
+        make: "",
+        model: "",
+        prediction: "",
+        severity: "",
+      };
+    }
+    console.log("ans ", ans);
+    return ans;
+  };
 
   const dateToDaysAgo = (date) => {
     let a = new Date();
@@ -65,7 +143,6 @@ const Main = ({ assetId }) => {
     return modifiedDate;
   };
 
-  console.log("assetIdHibi ", assetIdHibi);
   let card_hibi_data =
     hibiData.length > 0 &&
     hibiData.map((hib) => {
@@ -75,15 +152,15 @@ const Main = ({ assetId }) => {
       return (
         <div key={hib.hibiId}>
           <div className="testimonals__card">
-            <span className="model__card__props3__date">
-              {`${transformedData} days ago`}
-            </span>
-            <div className="card__title">
+            <div className="model__card__asset__date">
+              <span className="model__card__props3__date">
+                {`${transformedData} days ago`}
+              </span>
               <span className="card__title__lg-header">{hib.assetId}</span>
             </div>
+
             <div className="card__title">
               <span className="card__title__lg">
-                <span className="card__defect__title">Defect Name: </span>
                 <span className="card__defect__title__value">
                   {hib.defectName}
                 </span>
@@ -125,7 +202,6 @@ const Main = ({ assetId }) => {
         assetId: assetIdHibi,
       })
       .then((res) => {
-        console.log("assset i dih0j ", res.data);
         let data = res.data.sort(function (x, y) {
           return new Date(x.datetime) < new Date(y.datetime) ? 1 : -1;
         });
@@ -177,7 +253,9 @@ const Main = ({ assetId }) => {
         </div>
       </div>
       <div className="main__container">
-        <section className="testimonals">{card_hibi_data}</section>
+        {hibiData.length > 0 && (
+          <section className="testimonals">{card_hibi_data}</section>
+        )}
         {hibiData.length === 0 && (
           <div className="testimonals__card__center__align">
             <div className="testimonals__card__error">

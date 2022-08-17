@@ -101,22 +101,27 @@
 }
 
 .card__title__lg-header {
-  font-size: 1.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   color: #116466;
 }
 
 .card__title__lg {
   background-color: hsla(45, 100%, 54%, 0.55);
   padding: 1rem;
-  border-bottom-right-radius: 20%;
-  border-bottom-left-radius: 20%;
+  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10%;
 }
 .card__defect__title {
   font-weight: 700;
 }
 .card__defect__title__value {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .load__image__alt {
   display: flex;
@@ -155,11 +160,19 @@
 
 .model__card__props3__date {
   font-size: 1rem;
-  padding: 14px 4px;
+  padding: 4px 4px;
   font-weight: 600;
   letter-spacing: 1px;
   color: #116466;
 }
+
+.model__card__asset__date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px 5px;
+}
+
 .model__card__props3__value__date {
   font-size: 1rem;
   font-weight: 700;

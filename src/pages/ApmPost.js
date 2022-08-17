@@ -17,14 +17,12 @@ const ApmPost = (props) => {
 
   const postToApmDataApiHandler = () => {
     axios.post("http://localhost:9095/hibi/taskIdFrames").then((res) => {
-      console.log(res);
       if (res.status === 200) {
         axios.get("http://localhost:9095/hibi/hibimaster").then((res) => {
           if (res.data) {
             axios.get("http://localhost:9095/hibi/apmPost").then((res) => {
               let jsonData = JSON.stringify(res.data);
               let parseJson = JSON.parse(jsonData);
-              console.log("json Data is ", parseJson);
               setPostToApmData(parseJson.status);
             });
           }
