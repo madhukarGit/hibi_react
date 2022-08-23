@@ -1,13 +1,14 @@
 import "./ApmPost.css";
 import axios from "axios";
 import { useState } from "react";
+import { SettingsPhoneSharp } from "@mui/icons-material";
 
 const ApmPost = (props) => {
   const [postToApm, setPostToApm] = useState("");
   const [postToApmData, setPostToApmData] = useState("");
 
   const postApmHandler = () => {
-    axios.get("http://localhost:9095/hibi/hibiwatcher").then((res) => {
+    axios.get("http://10.78.151.41:9095/hibi/hibiwatcher").then((res) => {
       console.log(res.status);
       if (res.status === 200) {
         setPostToApm("successfully started the watcher");
@@ -16,18 +17,26 @@ const ApmPost = (props) => {
   };
 
   const postToApmDataApiHandler = () => {
-    axios.post("http://localhost:9095/hibi/taskIdFrames").then((res) => {
+    axios.post("http://10.78.151.41:9095/hibi/taskIdFrames").then((res) => {
       if (res.status === 200) {
-        axios.get("http://localhost:9095/hibi/hibimaster").then((res) => {
+        axios.get("http://10.78.151.41:9095/hibi/hibimaster").then((res) => {
           if (res.data) {
-            axios.get("http://localhost:9095/hibi/apmPost").then((res) => {
+            axios.get("http://10.78.151.41:9095/hibi/apmPost").then((res) => {
               let jsonData = JSON.stringify(res.data);
               let parseJson = JSON.parse(jsonData);
               setPostToApmData(parseJson.status);
+            }).catch(err=>{
+              setPostToApmData(err.message)
             });
           }
+        }).catch(err=>{
+          console.log("master ",err.message)
+          setPostToApmData(err.message)
         });
       }
+    }).catch(err=>{
+      console.log("err ",err)
+      setPostToApmData(err.message)
     });
   };
   return (

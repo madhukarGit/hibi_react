@@ -75,11 +75,11 @@
   grid-column: center-start/center-end;
   display: grid;
   grid-template-columns: repeat(auto-fit, 28rem);
-  grid-gap: 5rem;
+  grid-gap: 10rem;
   place-content: start;
 }
 .testimonals__card {
-  width: 25rem;
+  width: 35rem;
   height: 35rem;
   position: relative;
   background-color: #fff;
@@ -153,8 +153,8 @@
 }
 
 .img__sunflower__smaple {
-  height: 160px;
-  width: 180px;
+  height: 180px;
+  width: 200px;
   margin: 2px;
 }
 

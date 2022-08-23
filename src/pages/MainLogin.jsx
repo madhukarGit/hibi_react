@@ -33,7 +33,7 @@ const Main = ({ assetId }) => {
 
   useEffect(() => {
     axios
-      .post("http://localhost:9095/hibi/asset", {
+      .post("http://10.78.151.41:9095/hibi/asset", {
         assetId: assetId,
       })
       .then((res) => {
@@ -198,7 +198,7 @@ const Main = ({ assetId }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:9095/hibi/asset", {
+      .post("http://10.78.151.41:9095/hibi/asset", {
         assetId: assetIdHibi,
       })
       .then((res) => {
