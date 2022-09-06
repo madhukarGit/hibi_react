@@ -143,12 +143,17 @@ const Main = ({ assetId }) => {
     return modifiedDate;
   };
 
+  const defectNameSpilt = (defects)=>{
+      const names = defects.split(",")
+    return names;
+  }
+
   let card_hibi_data =
     hibiData.length > 0 &&
     hibiData.map((hib) => {
       let transformedData = dateToDaysAgo(hib.datetime);
       let dateToIso = dateToIsoTransform(hib.datetime);
-
+      let defectNames = defectNameSpilt(hib.defectName)
       return (
         <div key={hib.hibiId}>
           <div className="testimonals__card">
@@ -161,9 +166,11 @@ const Main = ({ assetId }) => {
 
             <div className="card__title">
               <span className="card__title__lg">
-                <span className="card__defect__title__value">
-                  {hib.defectName}
+              {defectNames.map(e=>{
+                  return <span className="card__defect__title__value">
+                  {e}
                 </span>
+                })}
               </span>
             </div>
             <div className="load__image__alt">

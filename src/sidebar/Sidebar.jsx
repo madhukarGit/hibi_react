@@ -15,7 +15,7 @@ const StyledHomeIcon = styled(SettingsIcon, {
 const Sidebar = () => {
   return (
     <aside className="nav__side-nav">
-      <NavLink to="/home" className="nav__side-nav-link">
+      <NavLink to="/" className="nav__side-nav-link">
         <img src={Hamburger} alt="hamburger" />
       </NavLink>
       <NavLink

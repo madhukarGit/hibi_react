@@ -108,10 +108,13 @@
 }
 
 .card__title__lg {
+  width: 300px;
   background-color: hsla(45, 100%, 54%, 0.55);
   padding: 1rem;
   border-bottom-right-radius: 10%;
   border-bottom-left-radius: 10%;
+  display: flex;
+  flex-wrap: wrap;
 }
 .card__defect__title {
   font-weight: 700;
@@ -122,6 +125,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+.card__defect__title__value::after{
+  content: " ";
 }
 .load__image__alt {
   display: flex;
