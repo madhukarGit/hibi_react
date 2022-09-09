@@ -13,13 +13,13 @@
   letter-spacing: 1px;
 }
 .apm__post__button {
-  height: 8rem;
-  width: 40rem;
-  background-color: #41b3a3;
+  height: 6rem;
+  width: 30rem;
+  background-color: #4056a1;
   border: none;
-  color: #501b1d;
-  font-size: 1.8rem;
-  font-weight: 700;
+  color: whitesmoke;
+  font-size: 1.6rem;
+  font-weight: 600;
   transition: all 0.4s;
 }
 .apm__post__button:active,
@@ -29,11 +29,11 @@
 
 .apm__post__button:hover {
   cursor: pointer;
-  width: 40rem;
+  width: 30rem;
   letter-spacing: 1px;
 }
 .post__apm__data_hibi {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 .apm_post__data__assets {
@@ -49,7 +49,7 @@
   margin-top: 2rem;
 }
 .apm_post__data__data {
-  margin-top: 7rem;
+  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,6 +63,7 @@
     transform: rotate(360deg);
   }
 }
+
 .loading-spinner {
   width: 50px;
   height: 50px;
@@ -70,4 +71,28 @@
   border-top: 5px solid #05386b; /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
+}
+
+.table_csv_list {
+  padding: 50px;
+}
+.table_hibi_csv_borders {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.header__left_jobs_demand {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-left: 40px;
 }

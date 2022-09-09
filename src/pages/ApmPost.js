@@ -1,24 +1,25 @@
 import "./ApmPost.css";
 import axios from "axios";
 import { useState } from "react";
-import { SettingsPhoneSharp } from "@mui/icons-material";
 
 const ApmPost = (props) => {
   const [postToApm, setPostToApm] = useState("");
   const [postToApmData, setPostToApmData] = useState("");
   const [loading, setIsLoading] = useState(false);
+  const [listHibiCSVRecords, setListHibiCSVRecords] = useState([]);
+  const [csvLoading, setCsvIsLoading] = useState(false);
 
-  const postApmHandler = async() => {
-    try{
-        const res = await axios.get("http://10.78.151.41:9095/hibi/hibiwatcher")
-        if(res.status === 200){
-          setPostToApm("successfully started the watcher")
-        }
-    }catch(err){
-      const res = await axios.get("http://10.78.151.41:9095/hibi/hibiwatcher")
-        if(res.status === 200){
-          setPostToApm("successfully started the watcher")
-        }
+  const postApmHandler = async () => {
+    try {
+      const res = await axios.get("http://localhost:9095/hibi/hibiwatcher");
+      if (res.status === 200) {
+        setPostToApm("successfully started the watcher");
+      }
+    } catch (err) {
+      const res = await axios.get("http://localhost:9095/hibi/hibiwatcher");
+      if (res.status === 200) {
+        setPostToApm("successfully started the watcher");
+      }
     }
   };
 
@@ -45,42 +46,42 @@ const ApmPost = (props) => {
   //   });
   // };
 
-
-  
   const apm_post_api = async () => {
     try {
-      const res = await axios.get("http://10.78.151.41:9095/hibi/apmPost");
+      const res = await axios.get("http://localhost:9095/hibi/apmPost");
       if (res.status === 200) {
         let jsonData = JSON.stringify(res.data);
         let parseJson = JSON.parse(jsonData);
-          setPostToApmData(parseJson.status);
+        setPostToApmData(parseJson.status);
       }
       setIsLoading(false);
     } catch (err) {
-      try{
-        const res = await axios.get("http://10.78.151.41:9095/hibi/apmPost");
+      try {
+        const res = await axios.get("http://localhost:9095/hibi/apmPost");
         if (res.status === 200) {
           let jsonData = JSON.stringify(res.data);
           let parseJson = JSON.parse(jsonData);
           setPostToApmData(parseJson.status);
         }
         setIsLoading(false);
-      }catch(err){
-        setPostToApmData("Invalid CSV, with asset Id not mapped to Images, I/O error")
+      } catch (err) {
+        setPostToApmData(
+          "Invalid CSV, with asset Id not mapped to Images, I/O error"
+        );
       }
     }
   };
 
   const hibi_master_api = async () => {
     try {
-      const res = await axios.get("http://10.78.151.41:9095/hibi/hibimaster");
+      const res = await axios.get("http://localhost:9095/hibi/hibimaster");
       if (res.status === 200) {
         apm_post_api();
       }
     } catch (err) {
-      console.log("err is ",err)
+      console.log("err is ", err);
       setPostToApmData("CSV has no records to read");
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
   const dataApiAsync = async () => {
@@ -99,13 +100,13 @@ const ApmPost = (props) => {
     // });
 
     try {
-      const res = await axios.post("http://10.78.151.41:9095/hibi/taskIdFrames");
+      const res = await axios.post("http://localhost:9095/hibi/taskIdFrames");
       if (res.status === 200) {
         hibi_master_api();
       }
     } catch (err) {
       try {
-        const res = await axios.post("http://10.78.151.41:9095/hibi/taskIdFrames");
+        const res = await axios.post("http://localhost:9095/hibi/taskIdFrames");
         if (res.status === 200) {
           hibi_master_api();
         }
@@ -119,25 +120,98 @@ const ApmPost = (props) => {
     dataApiAsync();
     setIsLoading(true);
   };
-  return (
-    <div className="post__apm__data_hibi">
-      <section className="apm_post__data">
-        <span className="text__header_h3">
-          
-        </span>
-        <button className="apm__post__button" onClick={postApmHandler}>
-          Start HIBI watcher process
-        </button>
-        <span className="succesful_validation__apm">{postToApm}</span>
-      </section>
-      <section className="apm_post__data__data">
-        <button className="apm__post__button" onClick={postToApmDataApiHandler}>
-          Start HIBI to APM process
-        </button>
-        {loading && <div className="loading-spinner"></div>}
-        <span className="succesful_validation__apm">{postToApmData}</span>
-      </section>
+
+  const hibiMasterDataHandler = async () => {
+    setCsvIsLoading(true);
+    try {
+      const res = await axios.get("http://localhost:9095/hibi/hibicsvData");
+      console.log("res ", res.data);
+      if (res.status === 200) {
+        setCsvIsLoading(false);
+      }
+      setListHibiCSVRecords(res.data);
+    } catch (err) {
+      const res = await axios.get("http://localhost:9095/hibi/hibicsvData");
+      console.log("res ", res.data);
+      if (res.status === 200) {
+        setCsvIsLoading(false);
+      }
+      setListHibiCSVRecords(res.data);
+    }
+  };
+
+  const csvRecordData = (
+    <div>
+      <div className="tablular__list_records">
+        <table className="table_hibi_csv_borders">
+          <tr>
+            <th>assetId</th>
+            <th>assetLatitude</th>
+            <th>assetLongitude</th>
+            <th>datetime</th>
+            <th>defectName</th>
+            <th>frameId</th>
+            <th>frameLatitude</th>
+            <th>frameLongitude</th>
+            <th>make</th>
+            <th>model</th>
+            <th>prediction</th>
+            <th>severity</th>
+          </tr>
+          {listHibiCSVRecords.map((e) => {
+            return (
+              <tr>
+                <td>{e.assetId}</td>
+                <td>{e.assetLatitude}</td>
+                <td>{e.assetLongitude}</td>
+                <td>{e.datetime}</td>
+                <td>{e.defectName}</td>
+                <td>{e.frameId}</td>
+                <td>{e.frameLatitude}</td>
+                <td>{e.frameLongitude}</td>
+                <td>{e.make}</td>
+                <td>{e.model}</td>
+                <td>{e.prediction}</td>
+                <td>{e.severity}</td>
+              </tr>
+            );
+          })}
+        </table>
+      </div>
     </div>
+  );
+
+  return (
+    <>
+      <div className="post__apm__data_hibi">
+        <section className="apm_post__data">
+          <span className="text__header_h3"></span>
+          <button className="apm__post__button" onClick={postApmHandler}>
+            Process images in HIBI
+          </button>
+          <span className="succesful_validation__apm">{postToApm}</span>
+        </section>
+        <section className="apm_post__data__data">
+          <button
+            className="apm__post__button"
+            onClick={postToApmDataApiHandler}
+          >
+            Send defects to LUMADA APM
+          </button>
+          {loading && <div className="loading-spinner"></div>}
+          <span className="succesful_validation__apm">{postToApmData}</span>
+        </section>
+        <section className="apm_post__data__data">
+          <button className="apm__post__button" onClick={hibiMasterDataHandler}>
+            View Latest HIBI Defect List
+          </button>
+        </section>
+      </div>
+      {csvLoading && <div className="loading-spinner"></div>}
+      {listHibiCSVRecords.length > 0 && (
+        <div className="table_csv_list">{csvRecordData}</div>
+      )}
+    </>
   );
 };
 
