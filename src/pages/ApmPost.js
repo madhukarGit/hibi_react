@@ -8,13 +8,18 @@ const ApmPost = (props) => {
   const [postToApmData, setPostToApmData] = useState("");
   const [loading, setIsLoading] = useState(false);
 
-  const postApmHandler = () => {
-    axios.get("http://10.78.151.41:9095/hibi/hibiwatcher").then((res) => {
-      console.log(res.status);
-      if (res.status === 200) {
-        setPostToApm("successfully started the watcher");
-      }
-    });
+  const postApmHandler = async() => {
+    try{
+        const res = await axios.get("http://10.78.151.41:9095/hibi/hibiwatcher")
+        if(res.status === 200){
+          setPostToApm("successfully started the watcher")
+        }
+    }catch(err){
+      const res = await axios.get("http://10.78.151.41:9095/hibi/hibiwatcher")
+        if(res.status === 200){
+          setPostToApm("successfully started the watcher")
+        }
+    }
   };
 
   // const postToApmDataApiHandler = () => {
@@ -48,12 +53,7 @@ const ApmPost = (props) => {
       if (res.status === 200) {
         let jsonData = JSON.stringify(res.data);
         let parseJson = JSON.parse(jsonData);
-        console.log("length is ",parseJson.length)
-        if(!parseJson.length){
-          setPostToApmData("Invalid CSV, with asset Id not mapped to Images, I/O error")
-        }else{
           setPostToApmData(parseJson.status);
-        }
       }
       setIsLoading(false);
     } catch (err) {
