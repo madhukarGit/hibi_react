@@ -1,9 +1,8 @@
 import React from "react";
 import "./Header.css";
 import user from "../assets/download.png";
-import { RiArrowDownSLine } from "react-icons/ri";
 
-import { Menu, MenuItem } from "@mui/material";
+import { Menu } from "@mui/material";
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,23 +20,29 @@ const Header = () => {
       <div className="logo-section">
         <span className="logo-section__name">HITACHI</span>
         <div className="logo-section_vertical"></div>
-        <span className="logo-section__name__location">
-          ASSETS INSPECTION IMAGES
-        </span>
+        <span className="logo-section__name__location">HIBI</span>
       </div>
-
+      <div className="header__tabs_span">
+        <span className="tabs__child_tab">Overview</span>
+        <span className="tabs__child_tab">Program</span>
+        <span className="tabs__child_tab">Projects</span>
+        <span className="tabs__child_tab">Tasks</span>
+        <span className="tabs__child_tab">Reports</span>
+        <span className="tabs__child_tab">Model Management</span>
+        <span className="tabs__child_tab">Administration</span>
+      </div>
       <div className="user-nav">
-        <span className="user_role">Operator</span>
+        {/* <span className="user_role">Operator</span> */}
         <img src={user} className="user-nav__user-photo" alt="user" />
 
-        <RiArrowDownSLine
+        {/* <RiArrowDownSLine
           className="user-dropdown"
           id="demo-positioned-button"
           aria-controls={open ? "demo-positioned-menu" : undefined}
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
           onClick={handleClick}
-        />
+        /> */}
         <Menu
           id="demo-positioned-menu"
           aria-labelledby="demo-positioned-button"
@@ -53,7 +58,7 @@ const Header = () => {
             horizontal: "left",
           }}
         >
-          <div className="menu__item__selection">
+          {/* <div className="menu__item__selection">
             <MenuItem>Sr Admin</MenuItem>
             <MenuItem>adminxyz@gmail.com</MenuItem>
             <MenuItem
@@ -64,7 +69,7 @@ const Header = () => {
             >
               Logout
             </MenuItem>
-          </div>
+          </div> */}
         </Menu>
       </div>
     </header>

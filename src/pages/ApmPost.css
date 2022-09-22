@@ -5,7 +5,7 @@
   align-items: center;
 }
 .apm_post__data > :nth-child(even) {
-  margin-top: 2rem;
+  margin-right: 10px;
 }
 .text__header_h3 {
   font-size: 2rem;
@@ -13,12 +13,12 @@
   letter-spacing: 1px;
 }
 .apm__post__button {
-  height: 6rem;
-  width: 30rem;
-  background-color: #4056a1;
+  height: 2.8rem;
+  width: 18rem;
+  background-color: #2080b4;
   border: none;
-  color: whitesmoke;
-  font-size: 1.6rem;
+  color: #fbfcfc;
+  font-size: 11px;
   font-weight: 600;
   transition: all 0.4s;
 }
@@ -29,11 +29,22 @@
 
 .apm__post__button:hover {
   cursor: pointer;
-  width: 30rem;
-  letter-spacing: 1px;
+  width: 18rem;
+  letter-spacing: 0.2px;
 }
 .post__apm__data_hibi {
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.post__apm__data_hibi > * {
+  margin-right: 25px;
+}
+
+.post__apm__data_hibi > :first-child {
+  margin-right: auto;
+  margin-left: 20px;
 }
 
 .apm_post__data__assets {
@@ -45,11 +56,11 @@
 }
 .succesful_validation__apm {
   font-size: 1.2rem;
-  font-weight: 700;
-  margin-top: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
 }
 .apm_post__data__data {
-  margin-top: 5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,9 +76,9 @@
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 10px solid #f3f3f3; /* Light grey */
+  width: 40px;
+  height: 40px;
+  border: 5px solid #f3f3f3; /* Light grey */
   border-top: 5px solid #05386b; /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
@@ -95,4 +106,25 @@ tr:nth-child(even) {
   font-size: 1.4rem;
   font-weight: 500;
   margin-left: 40px;
+}
+
+.validation__message_axios {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading__validations__center {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 40px;
+  margin-top: 1rem;
+}
+.title__jobs__demand {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  margin-bottom: 4rem;
 }

@@ -16,7 +16,7 @@
 }
 .logo-section__name__location {
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.4rem;
 }
 .logo-section_vertical {
   border-right: 2px solid grey;
@@ -39,6 +39,25 @@
     align-content: space-around;
     height: 4rem;
   }
+}
+
+.header__tabs_span {
+  display: flex;
+}
+
+.tabs__child_tab {
+  padding: 0 15px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #414141;
+}
+
+.tabs__child_tab:hover {
+  padding: 0 15px;
+  font-size: 11px;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 .search {
@@ -125,6 +144,7 @@
 .user-nav__user-photo {
   height: 2.75rem;
   border-radius: 50%;
+  opacity: 0.4;
 }
 
 .user-dropdown {

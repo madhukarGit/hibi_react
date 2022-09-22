@@ -184,12 +184,12 @@ const ApmPost = (props) => {
   return (
     <>
       <div className="post__apm__data_hibi">
+        <div className="title__jobs__demand">Run Jobs On Demand</div>
+
         <section className="apm_post__data">
-          <span className="text__header_h3"></span>
           <button className="apm__post__button" onClick={postApmHandler}>
             Process images in HIBI
           </button>
-          <span className="succesful_validation__apm">{postToApm}</span>
         </section>
         <section className="apm_post__data__data">
           <button
@@ -198,14 +198,19 @@ const ApmPost = (props) => {
           >
             Send defects to LUMADA APM
           </button>
-          {loading && <div className="loading-spinner"></div>}
-          <span className="succesful_validation__apm">{postToApmData}</span>
         </section>
         <section className="apm_post__data__data">
           <button className="apm__post__button" onClick={hibiMasterDataHandler}>
             View Latest HIBI Defect List
           </button>
         </section>
+      </div>
+      <div className="loading__validations__center">
+        {loading && <div className="loading-spinner"></div>}
+        <div className="validation__message_axios">
+          <span className="succesful_validation__apm">{postToApm}</span>
+          <span className="succesful_validation__apm">{postToApmData}</span>
+        </div>
       </div>
       {csvLoading && <div className="loading-spinner"></div>}
       {listHibiCSVRecords.length > 0 && (

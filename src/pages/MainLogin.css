@@ -126,7 +126,7 @@
   align-items: center;
   gap: 1rem;
 }
-.card__defect__title__value::after{
+.card__defect__title__value::after {
   content: " ";
 }
 .load__image__alt {
